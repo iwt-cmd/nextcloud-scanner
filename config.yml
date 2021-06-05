@@ -1,0 +1,8 @@
+---
+paths:
+  log_path: "/var/log/permcorrect-log.txt"
+  root_path: "/tmp"
+params:
+  uid: 1000
+  gid: 1000
+  
