@@ -14,9 +14,9 @@ if __name__ == '__main__':
     
     time.sleep(1)
     systemd.daemon.notify('READY=1')
-    #Config file is expected at /lib/systemd/system/permcorrect.d/.  Update below as well as Systemd unit file if changed
+    #Config file is expected at /lib/systemd/system/nextcloud-scanner.d/.  Update below as well as Systemd unit file if changed
     try:
-        with open("/lib/systemd/system/permcorrect.d/config.yml", "r") as yfile:
+        with open("/lib/systemd/system/nextcloud-scanner.d/config.yml", "r") as yfile:
             cfg = yaml.load(yfile, Loader=yaml.FullLoader)
     except:
         logging.warning("Config file not found")

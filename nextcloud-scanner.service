@@ -2,7 +2,7 @@
 Description=Permission correction service
 
 [Service]
-ExecStart=/usr/bin/python /lib/systemd/system/permcorrect.d/permcorrect.py
+ExecStart=/usr/bin/python /lib/systemd/system/nextcloud-scanner.d/nextcloud-scanner.py
 Environment=PYTHONNUMBUFFERED=1
 Restart=on-failure
 Type=notify
