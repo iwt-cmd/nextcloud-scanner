@@ -6,6 +6,7 @@ import yaml
 import logging
 import sys
 import signal
+import subprocess
 
 def sig_handler(sig, frame):
     sys.exit(0)
@@ -28,6 +29,8 @@ if __name__ == '__main__':
         log_path =  cfg["paths"]["log_path"]
         owner_uid = cfg["params"]["uid"]
         owner_gid = cfg["params"]["gid"]
+        occ_path = cfg["nextcloud"]["occ_path"]
+        nc_user = cfg["nextcloud"]["nc_user"]
     except:
         logging.warning("Config file not formatted correctly or missing values")
         signal.signal(signal.SIGINT, sig_handler)
@@ -58,4 +61,6 @@ if __name__ == '__main__':
                     f.write( f"{perm} {owner} {group} {name}")
                     f.write("\n")
                     f.close()
+                    #Run Nextcloud database update process
+                    nc_output = (subprocess.check_output(f"sudo -u www-data php {occ_path} files:scan --path={nc_user}", shell=True)).decode('UTF-8').rstrip()
         time.sleep(5)
